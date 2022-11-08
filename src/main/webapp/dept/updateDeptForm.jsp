@@ -75,11 +75,11 @@
 					<form method = "post" action = "<%=request.getContextPath() %>/dept/updateDeptAction.jsp">
 						<table>
 							<thead>
-								<!-- 부서 번호 -->
+								<!-- 부서 번호는 수정할 수 없도록 readonly 속성 사용 -->
 								<tr>
 									<td>부서 번호</td>
 									<td>
-										<input type = "text" name = "deptNo" value = "<%=deptNo %>">
+										<input type = "text" name = "deptNo" value = "<%=deptNo %>" readonly = "readonly">
 									</td>
 								</tr>
 						
