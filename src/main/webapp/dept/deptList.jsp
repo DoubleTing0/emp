@@ -152,7 +152,7 @@
 										<td><%=d.deptNo %></td>
 										<td><%=d.deptName %></td>
 										<td>
-											<a href = "">수정</a>
+											<a href = "<%=request.getContextPath()%>/dept/updateDeptForm.jsp?deptNo=<%=d.deptNo%>">수정</a>
 										</td>
 										<td>
 											<a href = "<%=request.getContextPath()%>/dept/deleteDept.jsp?deptNo=<%=d.deptNo%>">삭제</a>
