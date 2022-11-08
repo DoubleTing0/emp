@@ -32,8 +32,16 @@
 			</div>
 
 			<div>
-				<form method = "post" action = "<%=request.getContextPath() %>/insertDeptAction.jsp">
+				<form method = "post" action = "<%=request.getContextPath() %>/dept/insertDeptAction.jsp">
 					<table>
+						<!-- 부서 번호 -->
+						<tr>
+							<td>부서 번호</td>
+							<td>
+								<input type = "text" name = "deptNo">
+							</td>
+						</tr>
+						
 						<!-- 부서 이름 -->
 						<tr>
 							<td>부서 이름</td>
