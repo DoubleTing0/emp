@@ -28,12 +28,12 @@
 		<style>
 			a:link {
 			  text-decoration : none;
-			  color : gray;
+			  color : white;
 			}
 			
 			a:visited {
 			  text-decoration : none;
-			  color : gray;
+			  color : white;
 			}
 			
 			a:hover {
@@ -45,17 +45,8 @@
 			  text-decoration : none;
 			}
 			
-			th, td {
-				border : 1px solid grey;
-			}
-			
-			table th:first-child,
-			table td:first-child {
-				border-left: 0;
-			}
-			table th:last-child,
-			table td:last-child {
-				border-right: 0;
+			table, tr, th, td {
+				border : 1px solid gray;
 			}
 			
 		</style>
@@ -111,11 +102,21 @@
 			<div class = "container">
 			
 				<div>&nbsp;</div>
-			
+				
 				<div class = "text-center">
 					<h1>
-						<span class = "badge badge-pill bg-success">부서 목록</span>
+						<span class = "badge bg-success">부서 관리</span>
 					</h1>
+				</div>
+				
+				<div>&nbsp;</div>
+
+				<!-- 메뉴 partical jsp 구성 -->
+				<div>
+					<!-- include 주체는 서버라서 경로를 서버기준으로 생각해야한다.
+						 request.getContextPath() 쓰지마라. 
+						 이미 같이 안에 있기 때문에 context path를 가져올 필요가 없다.-->
+					<jsp:include page = "/inc/menu.jsp"></jsp:include>
 				</div>
 				
 				<div>&nbsp;</div>
@@ -134,8 +135,8 @@
 				<div class = "row justify-content-center">
 					
 					<!-- 부서 목록 출력(부서번호 내림차순으로) -->
-					<table class = "table table-borderless w-auto text-center"">
-						<thead class = "table-info">
+					<table class = "table table-borderless w-auto text-center">
+						<thead class = "table-active">
 							<tr>
 								<th>부서 번호</th>
 								<th>부서 이름</th>
@@ -144,7 +145,7 @@
 							</tr>
 						</thead>
 					
-						<tbody class = "table-active">
+						<tbody>
 							<%
 								for(Department d : list) {
 							%>
@@ -152,10 +153,14 @@
 										<td><%=d.deptNo %></td>
 										<td><%=d.deptName %></td>
 										<td>
-											<a href = "<%=request.getContextPath()%>/dept/updateDeptForm.jsp?deptNo=<%=d.deptNo%>">수정</a>
+											<span class = "badge bg-warning">
+												<a href = "<%=request.getContextPath()%>/dept/updateDeptForm.jsp?deptNo=<%=d.deptNo%>">수정</a>
+											</span>
 										</td>
 										<td>
-											<a href = "<%=request.getContextPath()%>/dept/deleteDept.jsp?deptNo=<%=d.deptNo%>">삭제</a>
+											<span class = "badge bg-danger">
+												<a href = "<%=request.getContextPath()%>/dept/deleteDept.jsp?deptNo=<%=d.deptNo%>">삭제</a>
+											</span>
 										</td>
 									</tr>
 							<%							
