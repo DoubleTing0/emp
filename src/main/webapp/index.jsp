@@ -73,6 +73,14 @@
 				<h3>
 					<span class = "badge bg-secondary">
 						<a href = "<%=request.getContextPath() %>/dept/deptList.jsp">부서 관리</a>
+						
+					</span>
+				</h3>
+			</div>
+			<div class = "text-center"> 
+				<h3>
+					<span class = "badge bg-secondary">
+						<a href = "<%=request.getContextPath() %>/emp/empList.jsp">사원 관리</a>
 					</span>
 				</h3>
 			</div>
