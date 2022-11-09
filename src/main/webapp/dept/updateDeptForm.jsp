@@ -26,6 +26,26 @@
 		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/minty.css">
 		
 		<style>
+			a:link {
+			  text-decoration : none;
+			  color : white;
+			}
+			
+			a:visited {
+			  text-decoration : none;
+			  color : white;
+			}
+			
+			a:hover {
+			  text-decoration : none;
+			  color : black;
+			}
+			
+			a:active {
+			  text-decoration : none;
+			}
+		
+		
 			table, tr, th, td {
 				border : 1px solid gray;
 			}
