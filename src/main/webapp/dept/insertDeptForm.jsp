@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.net.*" %>
 <%
 	// 인코딩 : UTF-8
 %>
@@ -23,6 +24,26 @@
 		
 		
 		<style>
+		
+			a:link {
+			  text-decoration : none;
+			  color : white;
+			}
+			
+			a:visited {
+			  text-decoration : none;
+			  color : white;
+			}
+			
+			a:hover {
+			  text-decoration : none;
+			  color : black;
+			}
+			
+			a:active {
+			  text-decoration : none;
+			}
+		
 			table, tr, th, td {
 				border : 1px solid gray;
 			}
@@ -48,6 +69,30 @@
 			</div>
 
 			<div>&nbsp;</div>
+			
+			<!-- 메뉴 partical jsp 구성 -->
+			<div>
+				<!-- include 주체는 서버라서 경로를 서버기준으로 생각해야한다.
+					 request.getContextPath() 쓰지마라. 
+					 이미 같이 안에 있기 때문에 context path를 가져올 필요가 없다.-->
+				<jsp:include page = "/inc/menu.jsp"></jsp:include>
+			</div>
+			
+
+			<div>&nbsp;</div>
+
+			<!-- 부서번호 부서이름 공백일 경우 msg 출력 -->
+			<%
+				if(request.getParameter("msg") != null) {
+			%>
+					<div class = "text-center text-danger">
+						<%=request.getParameter("msg")%>
+					</div>
+			<%
+				}
+			%>
+
+
 
 			<div>
 				<form method = "post" action = "<%=request.getContextPath() %>/dept/insertDeptAction.jsp">
