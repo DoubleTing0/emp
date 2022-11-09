@@ -22,40 +22,62 @@
 		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/minty.css">
 		
 		
+		<style>
+			table, tr, th, td {
+				border : 1px solid gray;
+			}
+			
+			
+		
+		</style>
+		
+		
+		
 	</head>
 	
 	<body>
 		<!--  -->
-		<div>
-			<div>
-				<h2>부서 추가</h2>
+		<div class = "container">
+		
+			<div>&nbsp;</div>
+		
+			<div class = "text-center">
+				<h1>
+					<span class = "badge bg-success">부서 추가</span>
+				</h1>
 			</div>
+
+			<div>&nbsp;</div>
 
 			<div>
 				<form method = "post" action = "<%=request.getContextPath() %>/dept/insertDeptAction.jsp">
-					<table>
-						<!-- 부서 번호 -->
-						<tr>
-							<td>부서 번호</td>
-							<td>
-								<input type = "text" name = "deptNo">
-							</td>
-						</tr>
-						
-						<!-- 부서 이름 -->
-						<tr>
-							<td>부서 이름</td>
-							<td>
-								<input type = "text" name = "deptName">
-							</td>
-						</tr>
-						
-						<tr>
-							<td colspan = "2">
-								<button type = "submit">추가</button>
-							</td>
-						</tr>						
-					</table>
+					<div class = "row justify-content-center">
+						<table class = "table table-borderless w-auto text-center">
+							<!-- 부서 번호 -->
+							<tr>
+								<th class = "table-active">부서 번호</th>
+								<td>
+									<input type = "text" name = "deptNo">
+								</td>
+							</tr>
+							
+							<!-- 부서 이름 -->
+							<tr>
+								<th class = "table-active">부서 이름</th>
+								<td>
+									<input type = "text" name = "deptName">
+								</td>
+							</tr>
+							
+							<tr>
+								<td colspan = "2">
+									<h3>
+										<button type = "submit" class = "badge bg-info" style = "border:0; outline:0">추가</button>
+									</h3>
+								</td>
+							</tr>						
+						</table>
+					</div>
 				</form>
 			</div>		
 		</div>	
