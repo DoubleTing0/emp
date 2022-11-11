@@ -11,4 +11,7 @@
 	<span class = "badge bg-info">
 		<a href = "<%=request.getContextPath() %>/emp/empList.jsp">사원 관리</a>
 	</span>
+	<span class = "badge bg-info">
+		<a href = "<%=request.getContextPath() %>/board/boardList.jsp">자유게시판</a>
+	</span>
 </h3>

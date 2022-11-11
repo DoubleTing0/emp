@@ -51,7 +51,8 @@
 	
 	ResultSet rsName = stmtName.executeQuery();
 	
-	// rsName의 결과물이 있고 분기1 / 수정 전과 번호까지 같을경우 분기2 / 나머지의 다른 값과 같을경우 --> insertDeptForm.jsp 로 재연결
+	// rsName의 결과물이 있고
+	// 분기1 / 수정 전과 번호까지 같을경우 분기2 / 나머지의 다른 값과 같을경우 --> insertDeptForm.jsp 로 재연결
 	if(rsName.next()) {
 		// 디버깅 코드
 		System.out.println(rsName.getString("dept_no") + " <-- rsName(dept_no)");

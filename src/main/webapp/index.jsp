@@ -18,30 +18,8 @@
 		<!-- 외부 부트스트랩 템플릿 참조 -->
 		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/minty.css">
 		
-		<style>
-			a:link {
-			  text-decoration : none;
-			  color : white;
-			}
-			
-			a:visited {
-			  text-decoration : none;
-			  color : white;
-			}
-			
-			a:hover {
-			  text-decoration : none;
-			  color : black;
-			}
-			
-			a:active {
-			  text-decoration : none;
-			}
-		    
-		    
-		    
-		</style>
-      
+		<!-- 앵커 태그 외부 css 참조 -->
+		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/anchor.css">
 		
 	</head>
 	
@@ -84,6 +62,15 @@
 					</span>
 				</h3>
 			</div>
+			
+			<div class = "text-center"> 
+				<h3>
+					<span class = "badge bg-secondary">
+						<a href = "<%=request.getContextPath() %>/board/boardList.jsp">자유게시판</a>
+					</span>
+				</h3>
+			</div>
+			
 		</div>
 		
 	</body>

@@ -63,16 +63,36 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>사원 관리</title>
+		
+		<!-- Bootstrap5를 참조한다 시작-->
+		
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Bootstrap5를 참조한다 끝-->
+		
+		<!-- 외부 부트스트랩 템플릿 참조 -->
+		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/minty.css">
+		
+		<!-- 앵커 태그 외부 css 참조 -->
+		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/anchor.css">
+		
+		<!-- 테이블 외부 css 참조 -->
+		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/table.css">
+		
 	</head>
 	
 	<body>
-		<div>
+		<div class = "container">
 			<div>&nbsp;</div>
 				
 			<div class = "text-center">
 				<h1>
-					<span class = "badge bg-success">부서 관리</span>
+					<span class = "badge bg-success">사원 관리</span>
 				</h1>
 			</div>
 			
@@ -88,28 +108,32 @@
 			
 			<div>&nbsp;</div>
 		
-			<div>
-				<table>
-					<tr>
-						<th>사원 번호</th>	
-						<th>퍼스트네임</th>	
-						<th>라스트네임</th>	
-					</tr>
-
-					<%
-						for(Employee e : empList) {
-					%>
-							<tr>
-								<td><%=e.empNo %></td>
-								<td>
-									<a href = "">
-										<%=e.firstName %></td>
-									</a>
-								<td><%=e.lastName %></td>
-							</tr>
-					<%
-						}				
-					%>
+			<div class = "row justify-content-center">
+				<table class = "table table-borderless w-auto text-center">
+					<thead class = "table-active">
+						<tr>
+							<th>사원 번호</th>	
+							<th>퍼스트네임</th>	
+							<th>라스트네임</th>	
+						</tr>
+					</thead>
+					
+					<tbody>
+						<%
+							for(Employee e : empList) {
+						%>
+								<tr>
+									<td><%=e.empNo %></td>
+									<td>
+										<a href = "">
+											<%=e.firstName %></td>
+										</a>
+									<td><%=e.lastName %></td>
+								</tr>
+						<%
+							}				
+						%>
+					</tbody>
 							
 				</table>
 			
@@ -119,10 +143,10 @@
 			
 			
 			
-			<div>현재 페이지 : <%=currentPage %></div>
+			<div class = "text-center">현재 페이지 : <%=currentPage %></div>
 		
 			<!-- 페이징 코드 -->
-			<div>
+			<div class = "text-center">
 				<a href = "<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1">처음</a>
 				<%
 					if(currentPage > 1) {

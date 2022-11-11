@@ -25,31 +25,11 @@
 		<!-- 외부 부트스트랩 템플릿 참조 -->
 		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/minty.css">
 		
-		<style>
-			a:link {
-			  text-decoration : none;
-			  color : white;
-			}
-			
-			a:visited {
-			  text-decoration : none;
-			  color : white;
-			}
-			
-			a:hover {
-			  text-decoration : none;
-			  color : black;
-			}
-			
-			a:active {
-			  text-decoration : none;
-			}
-			
-			table, tr, th, td {
-				border : 1px solid gray;
-			}
-			
-		</style>
+		<!-- 앵커 태그 외부 css 참조 -->
+		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/anchor.css">
+		
+		<!-- 테이블 외부 css 참조 -->
+		<link rel = "stylesheet" type = "text/css" href = "<%=request.getContextPath() %>/css/table.css">
 		
 		
 		
