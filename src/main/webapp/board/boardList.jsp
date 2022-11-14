@@ -3,6 +3,11 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "vo.*" %>
 <%
+	// 인코딩 : UTF-8
+	request.setCharacterEncoding("UTF-8");
+%>
+
+<%
 	// 1. 요청 분석(Controller)
 	
 	
@@ -11,6 +16,13 @@
 	if(request.getParameter("currentPage") != null) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
+	
+	
+	String boardWord = request.getParameter("boardWord");
+	
+	// 디버깅 코드
+	System.out.println(boardWord + " <-- boardWord");
+	
 	
 	
 	// 2. 요청(업무) 처리 후 필요하다면 모델데이터를 생성(Model)
@@ -27,13 +39,35 @@
 	// DB접속
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees", "root", "java1234");
 	
+	
+	// word의 값에 따른 countSql 분기
+	String cntSql = null;
+	PreparedStatement cntStmt = null;
+	
+	if(boardWord == null) {
+		// word 값이 null 일경우
+		// countSql
+		cntSql = "SELECT COUNT(board_no) cnt FROM board";
+		
+		// 쿼리 실행할 객체 생성
+		cntStmt = conn.prepareStatement(cntSql);
+		
+		
+		
+	} else {
+		// word 값이 들어올 경우(공백 포함)
+		cntSql = "SELECT COUNT(board_no) cnt FROM board WHERE board_title LIKE ?";
+		
+		cntStmt = conn.prepareStatement(cntSql);
+		
+		cntStmt.setString(1, "%" + boardWord + "%");
+		
+		
+	}
+	
+	
+	
 	// 2-1
-	// countSql
-	String cntSql = "SELECT COUNT(board_no) cnt FROM board";
-	
-	// 쿼리 실행할 객체 생성
-	PreparedStatement cntStmt = conn.prepareStatement(cntSql);
-	
 	// ResultSet 에 저장
 	ResultSet cntRs = cntStmt.executeQuery();
 	
@@ -47,17 +81,42 @@
 	
 	// 2-2
 	
-	// listSql
-	String listSql = 
-		"SELECT board_no boardNo, board_title boardTitle FROM board ORDER BY board_no ASC LIMIT ?, ?";
+	
+	// word 값에 따른 listSql 분기
+	
+	String listSql = null;
+	PreparedStatement listStmt = null;
+	
+	if(boardWord == null) {
+		
+		// listSql
+		listSql = 
+			"SELECT board_no boardNo, board_title boardTitle FROM board ORDER BY board_no ASC LIMIT ?, ?";
+		
+		
+		// 쿼리 실행할 객체 생성
+		listStmt = conn.prepareStatement(listSql);
+		
+		// listSql 의 ? 대입
+		listStmt.setInt(1, beginRow);
+		listStmt.setInt(2, ROW_PER_PAGE);
+		
+	} else {
+		
+		listSql = 
+			"SELECT board_no boardNo, board_title boardTitle FROM board WHERE board_title LIKE ? ORDER BY board_no ASC LIMIT ?, ?";
+		
+		listStmt = conn.prepareStatement(listSql);
+		
+		listStmt.setString(1, "%" + boardWord + "%");
+		listStmt.setInt(2, beginRow);
+		listStmt.setInt(3, ROW_PER_PAGE);
+	}
+		
+		
 	
 	
-	// 쿼리 실행할 객체 생성
-	PreparedStatement listStmt = conn.prepareStatement(listSql);
 	
-	// listSql 의 ? 대입
-	listStmt.setInt(1, beginRow);
-	listStmt.setInt(2, ROW_PER_PAGE);
 	
 	
 	// ResultSet 에 저장
@@ -140,6 +199,8 @@
 		
 			<div>&nbsp;</div>
 		
+		
+		
 			<div class = "row justify-content-center">
 				<table class = "table table-borderless w-auto text-center">
 					<thead class = "table-active">
@@ -169,6 +230,30 @@
 				</table>
 			</div>
 			
+			<div>&nbsp;</div>
+			
+			<div class = "text-center">
+				<form method = "post" action = "<%=request.getContextPath() %>/board/boardList.jsp">
+					<label for = "boardWord">글 제목 : </label>
+					
+					<%
+						if(boardWord == null) {
+					%>
+							<input type = "text" name = "boardWord" id = "boardWord">
+					<% 
+						} else {
+					%>
+							<input type = "text" name = "boardWord" id = "boardWord" value = "<%=boardWord %>">
+					<%
+						}
+					%>
+					
+					
+					<button type = "submit">검색</button>
+				</form>
+			</div>
+			
+			<div>&nbsp;</div>
 			
 			<!-- 페이징 처리 -->
 			<div class = "text-center">
@@ -176,21 +261,47 @@
 			</div>
 			
 			<div class = "text-center">
-				<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=1">처음 </a>
+			
 				<%
-					if(currentPage > 1) {
+					if(boardWord == null) {
 				%>
-						<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=currentPage - 1%>">이전 </a>
-				<%					
-					}
+						<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=1">처음 </a>
+						<%
+							if(currentPage > 1) {
+						%>
+								<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=currentPage - 1%>">이전 </a>
+						<%					
+							}
+						
+							if(currentPage < lastPage) {
+						%>
+								<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=currentPage + 1%>">다음 </a>
+						<%						
+							}
+						%>
+						<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=lastPage %>">마지막 </a>
+				<%		
+					} else {
+				%>
 				
-					if(currentPage < lastPage) {
-				%>
-						<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=currentPage + 1%>">다음 </a>
-				<%						
+						<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=1&boardWord=<%=boardWord %>">처음 </a>
+						<%
+							if(currentPage > 1) {
+						%>
+								<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=currentPage - 1%>&boardWord=<%=boardWord %>">이전 </a>
+						<%					
+							}
+						
+							if(currentPage < lastPage) {
+						%>
+								<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=currentPage + 1%>&boardWord=<%=boardWord %>">다음 </a>
+						<%						
+							}
+						%>
+						<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=lastPage %>&boardWord=<%=boardWord %>">마지막 </a>
+				<%
 					}
 				%>
-				<a href = "<%=request.getContextPath() %>/board/boardList.jsp?currentPage=<%=lastPage %>">마지막 </a>
 			</div>
 		
 		</div>
