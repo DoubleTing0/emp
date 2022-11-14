@@ -340,7 +340,7 @@
 										<div class = "text-center">
 											<span class = "badge bg-warning">
 												<h4>
-													<a href = "<%=request.getContextPath() %>/board/updateCommentForm.jsp?boardNo=<%=board.boardNo %>&&commentNo=<%=c.commentNo%>">
+													<a href = "<%=request.getContextPath() %>/board/updateCommentForm.jsp?boardNo=<%=board.boardNo %>&commentNo=<%=c.commentNo%>">
 														<span>수정</span>
 													</a>
 												</h4>
@@ -348,7 +348,7 @@
 											
 											<span class = "badge bg-danger">
 												<h4>
-													<a href = "<%=request.getContextPath() %>/board/deleteCommentForm.jsp?boardNo=<%=board.boardNo %>&&commentNo=<%=c.commentNo%>">
+													<a href = "<%=request.getContextPath() %>/board/deleteCommentForm.jsp?boardNo=<%=board.boardNo %>&commentNo=<%=c.commentNo%>">
 														<span>삭제</span>
 													</a>
 												</h4>
@@ -380,22 +380,22 @@
 				</div>
 				
 				<div>
-					<a href = "<%=request.getContextPath() %>/board/boardOne.jsp?boardNo=<%=boardNo %>&&currentPage=1">처음</a>
+					<a href = "<%=request.getContextPath() %>/board/boardOne.jsp?boardNo=<%=boardNo %>&currentPage=1">처음</a>
 					<%
 						if(currentPage > 1) {
 					%>
-							<a href = "<%=request.getContextPath() %>/board/boardOne.jsp?boardNo=<%=boardNo %>&&currentPage=<%=currentPage - 1%>">이전</a>
+							<a href = "<%=request.getContextPath() %>/board/boardOne.jsp?boardNo=<%=boardNo %>&currentPage=<%=currentPage - 1%>">이전</a>
 					<%
 						}
 					
 						if(currentPage < lastPage) {
 					%>						
-							<a href = "<%=request.getContextPath() %>/board/boardOne.jsp?boardNo=<%=boardNo %>&&currentPage=<%=currentPage + 1%>">다음</a>
+							<a href = "<%=request.getContextPath() %>/board/boardOne.jsp?boardNo=<%=boardNo %>&currentPage=<%=currentPage + 1%>">다음</a>
 					<%
 						}
 					%>
 					
-					<a href = "<%=request.getContextPath() %>/board/boardOne.jsp?boardNo=<%=boardNo %>&&currentPage=<%=lastPage %>">마지막</a>
+					<a href = "<%=request.getContextPath() %>/board/boardOne.jsp?boardNo=<%=boardNo %>&currentPage=<%=lastPage %>">마지막</a>
 					
 				
 				</div>

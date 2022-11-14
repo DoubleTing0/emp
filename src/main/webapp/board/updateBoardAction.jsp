@@ -26,7 +26,7 @@
 			|| boardPw == null || boardNo.equals("") || boardTitle.equals("") || boardContent.equals("") || boardWriter.equals("") 
 			|| createdate.equals("") || boardPw.equals("")) {
 		String msg = URLEncoder.encode("모든 항목을 빠짐없이 입력해주세요.", "UTF-8"); // get방식 한글 안깨지도록 인코딩
-		response.sendRedirect(request.getContextPath() + "/board/updateBoardForm.jsp?boardNo=" + boardNo + "&&msg=" + msg);
+		response.sendRedirect(request.getContextPath() + "/board/updateBoardForm.jsp?boardNo=" + boardNo + "&msg=" + msg);
 		return;
 		
 	}
@@ -65,7 +65,7 @@
 		
 		// 비밀번호가 다르면 수정이 안되고 문구 보여주기
 		String msgPw = URLEncoder.encode("비밀번호가 올바르지 않습니다.", "UTF-8");
-		response.sendRedirect(request.getContextPath() + "/board/updateBoardForm.jsp?boardNo=" + boardNo + "&&msg=" + msgPw);
+		response.sendRedirect(request.getContextPath() + "/board/updateBoardForm.jsp?boardNo=" + boardNo + "&msg=" + msgPw);
 		return;
 		
 	}

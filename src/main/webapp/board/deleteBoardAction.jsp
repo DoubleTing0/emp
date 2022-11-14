@@ -41,7 +41,7 @@
 	} else {
 		String msg = URLEncoder.encode("비밀번호가 올바르지 않습니다.", "UTF-8");
 		
-		response.sendRedirect(request.getContextPath() + "/board/deleteBoardForm.jsp?boardNo=" + boardNo + "&&msg=" + msg);
+		response.sendRedirect(request.getContextPath() + "/board/deleteBoardForm.jsp?boardNo=" + boardNo + "&msg=" + msg);
 	}
 		
 		

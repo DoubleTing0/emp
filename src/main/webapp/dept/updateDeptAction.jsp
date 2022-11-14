@@ -17,7 +17,7 @@
 	// 공백 값 입력 받아오면 updateDeptForm.jsp  재연결 후 코드 종료
 	if(deptNo == null || deptName == null || deptNo.equals("") || deptName.equals("")) {
 		String msg = URLEncoder.encode("부서이름을 입력하세요.", "UTF-8"); // get방식 한글 안깨지도록 인코딩
-		response.sendRedirect(request.getContextPath() + "/dept/updateDeptForm.jsp?deptNo=" + deptNo + "&&msg=" + msg + "");
+		response.sendRedirect(request.getContextPath() + "/dept/updateDeptForm.jsp?deptNo=" + deptNo + "&msg=" + msg + "");
 		return;
 	}
 	
@@ -61,11 +61,11 @@
 		
 		if(rsName.getString("dept_no").equals(deptNo) && rsName.getString("dept_name").equals(deptName)) {
 			String msg = URLEncoder.encode("수정 전 부서이름과 같습니다.", "UTF-8");
-			response.sendRedirect(request.getContextPath() + "/dept/updateDeptForm.jsp?deptNo=" + deptNo + "&&msg=" + msg + "");
+			response.sendRedirect(request.getContextPath() + "/dept/updateDeptForm.jsp?deptNo=" + deptNo + "&msg=" + msg + "");
 			return;
 		} else {
 			String msg = URLEncoder.encode("부서이름이 중복되었습니다.", "UTF-8");
-			response.sendRedirect(request.getContextPath() + "/dept/updateDeptForm.jsp?deptNo=" + deptNo + "&&msg=" + msg + "");
+			response.sendRedirect(request.getContextPath() + "/dept/updateDeptForm.jsp?deptNo=" + deptNo + "&msg=" + msg + "");
 			return;
 			
 		}

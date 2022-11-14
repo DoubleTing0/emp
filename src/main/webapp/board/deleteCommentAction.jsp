@@ -56,8 +56,8 @@
 		String delCommentMsg = URLEncoder.encode("비밀번호가 올바르지 않습니다.", "UTF-8"); // get방식 한글 안깨지도록 인코딩
 		
 		// response.sendRedirect(request.getContextPath() + "/board/deleteCommentForm.jsp?boardNo=" + boardNo
-		// + "commentNo=" + commentNo + "&&delCommentMsg=" + delCommentMsg);
-		response.sendRedirect(request.getContextPath() + "/board/deleteCommentForm.jsp?boardNo=" + boardNo + "&&commentNo=" + commentNo + "&&delCommentMsg=" + delCommentMsg);
+		// + "commentNo=" + commentNo + "&delCommentMsg=" + delCommentMsg);
+		response.sendRedirect(request.getContextPath() + "/board/deleteCommentForm.jsp?boardNo=" + boardNo + "&commentNo=" + commentNo + "&delCommentMsg=" + delCommentMsg);
 		return;
 	}
 	
