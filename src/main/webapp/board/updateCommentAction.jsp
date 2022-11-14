@@ -15,6 +15,17 @@
 	String commentContent = request.getParameter("commentContent");
 	String createdate = request.getParameter("createdate");
 	String commentPw = request.getParameter("commentPw");
+	
+	if(commentNo == null || boardNo == null || commentContent == null || createdate == null || commentPw == null
+			|| commentNo.equals("") || boardNo.equals("") || createdate.equals("")) {
+		
+		// 비밀번호와 내용은 공백이여도 괜찮다.
+		String updateCommentMsg = URLEncoder.encode("모든 항목을 입력하세요", "UTF-8"); // get방식 한글 안깨지도록 인코딩
+		response.sendRedirect(request.getContextPath() + "/board/updateCommentForm.jsp?commentNo=" + commentNo + "&updateCommentMsg=" + updateCommentMsg);
+		return;
+		
+		
+	}
 
 	
 	
@@ -43,16 +54,24 @@
 	int row = updateCommentStmt.executeUpdate();
 	
 	if(row == 1) {
+		
 		System.out.println("댓글 수정 완료");
+		
+		response.sendRedirect(request.getContextPath() + "/board/boardOne.jsp?boardNo=" + boardNo);
+		
 		
 	} else {
 		System.out.println("댓글 수정 실패");
+		
+		String updateCommentMsg = URLEncoder.encode("비밀번호가 올바르지 않습니다.", "UTF-8"); // get방식 한글 안깨지도록 인코딩
+		response.sendRedirect(request.getContextPath() + "/board/updateCommentForm.jsp?commentNo=" + commentNo + "&updateCommentMsg=" + updateCommentMsg);
+		return;
 		
 	}
 	
 	
 	// 수정 확인하기 위해 boardOne.jsp 재연결
-	response.sendRedirect(request.getContextPath() + "/board/boardOne.jsp?boardNo=" + boardNo);
+	
 	
 	
 
