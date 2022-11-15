@@ -232,6 +232,7 @@
 			
 			<div>&nbsp;</div>
 			
+			<!-- 검색 기능 구현 -->
 			<div class = "text-center">
 				<form method = "post" action = "<%=request.getContextPath() %>/board/boardList.jsp">
 					<label for = "boardWord">글 제목 : </label>
